@@ -11,16 +11,20 @@ datasource db {
 }
 
 model User {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  Task Task[]
+  id    String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name  String
+  email String @unique
+  tasks Task[] @relation("userToTask")
 }
 
 model Task {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  name          String @unique
-  status        String
-  priorityLevel String
-  assignedTo    User   @relation(fields: [assignedToid], references: [id])
-  assignedToid  String @db.ObjectId
+  id         String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name       String
+  status     String
+  priority   Int
+  dueDate    DateTime
+  ownerId    String   @map("ownerId")
+  owner      User     @relation("userToTask", fields: [ownerId], references: [id])
+  assignedId String?  @map("assignedId")
+  assigned   User?    @relation("userToTask", fields: [assignedId], references: [id])
 }
