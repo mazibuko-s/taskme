@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import MyTasks from "./MyTasks";
+import AssignedTasks from "./AssignedTasks";
 
 const Notepad: React.FC = () => {
   const [isMyTasks, setMyTasks] = useState<boolean>(false);
@@ -12,10 +14,10 @@ const Notepad: React.FC = () => {
       <div className="top">
         <p>TaskMe</p>
         <button onClick={handleToggle}>
-          {isMyTasks ? "mytasks" : "assignedtasks"}
+          {isMyTasks ? "assignedtasks" : "mytasks"}
         </button>
       </div>
-      <div className="paper">{isMyTasks ? "mytasks" : "assignedtasks"}</div>
+      <div className="paper">{isMyTasks ? <MyTasks /> : <AssignedTasks />}</div>
     </div>
   );
 };

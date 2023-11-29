@@ -1,10 +1,6 @@
 import React from'react';
  
-interface AssignedTasksProps{
-prop: string
-}
- 
-const AssignedTasks: React.FC<AssignedTasksProps> = ({prop}) => 
+const AssignedTasks: React.FC = () => 
 {
 return (<div>AssignedTasks</div>);
 }
