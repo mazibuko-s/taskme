@@ -8,7 +8,7 @@ export const handleCreateUser = async (
   res: NextApiResponse,
 ) => {
   try {
-    const { username, email } = req.body;
+    const { username, email, password } = req.body;
 
     // Validate required fields
     if (!username || !email) {
@@ -19,6 +19,7 @@ export const handleCreateUser = async (
       data: {
         username,
         email,
+        password,
       },
     });
 
