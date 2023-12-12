@@ -9,7 +9,7 @@ const CreateTask = () => {
   const [ownerId, setOwnerId] = useState("");
   const [assigneeId, setAssigneeId] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     try {
