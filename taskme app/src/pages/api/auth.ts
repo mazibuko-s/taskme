@@ -1,10 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "~/server/db";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { env } from "~/env";
 
 // POST /api/auth/register
 export const handleRegister = async (
@@ -24,6 +26,7 @@ export const handleRegister = async (
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create user in the database
     const result = await db.user.create({
       data: {
         username,
@@ -32,7 +35,13 @@ export const handleRegister = async (
       },
     });
 
-    return res.status(201).json(result);
+    // Generate JWT token
+    const token = jwt.sign({ userId: result.id }, env.JWT_SECRET, {
+      expiresIn: "1d", // Set the expiration time as needed
+    });
+
+    // Send the token and user data back to the client
+    return res.status(201).json({ token, user: result });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });
@@ -54,6 +63,7 @@ export const handleLogin = async (
         .json({ error: "Username and password are required" });
     }
 
+    // Find user in the database
     const user = await db.user.findUnique({
       where: { username },
     });
@@ -69,7 +79,13 @@ export const handleLogin = async (
       return res.status(401).json({ error: "Invalid password" });
     }
 
-    return res.status(200).json(user);
+    // Generate JWT token
+    const token = jwt.sign({ userId: user.id }, env.JWT_SECRET, {
+      expiresIn: "1d", // Set the expiration time as needed
+    });
+
+    // Send the token and user data back to the client
+    return res.status(200).json({ token, user });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });

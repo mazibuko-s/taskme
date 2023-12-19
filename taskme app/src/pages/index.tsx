@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Notepad from "~/components/notepad/Notepad";
+import Register from "~/components/auth/Register";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#003a00] to-[#15162c]">
-       <Notepad/>
+       <Register/>
       </main>
     </>
   );
