@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { IoMdPersonAdd } from "react-icons/io";
 import { motion } from "framer-motion";
+import { IoMdLogIn } from "react-icons/io";
+import { useRouter } from "next/router";
 
-const Register = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/register", {
+      const response = await axios.post("/api/auth/login", {
         username,
-        email,
         password,
       });
       const { token, user } = response.data;
@@ -21,21 +21,20 @@ const Register = () => {
       // Set the token as an HttpOnly cookie
       document.cookie = `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`;
 
-      console.log("Registration successful:", user);
+      console.log("Login successful:", user);
 
-      // redirect 
+      //  redirect
+      router.push("/tasks");
     } catch (error) {
       console.error(error);
-      // Handle registration error here
+      // Handle login error here
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="notepad">
+    <form className="notepad" onSubmit={handleSubmit}>
       <div className="top">
-        <h1 className="text-center text-4xl text-gray-300">
-          Task.Me---Register
-        </h1>
+        <h1 className="text-center text-4xl text-gray-300">Task.Me---Login</h1>
       </div>
       <div className="paper">
         <input
@@ -46,21 +45,13 @@ const Register = () => {
           required
         />
         <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
         />
-      </div>
-
+      </div>{" "}
       <motion.button
         type="submit"
         className="flex w-full items-center justify-center bg-white text-2xl"
@@ -74,12 +65,12 @@ const Register = () => {
           exit={{ x: -20, opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <IoMdPersonAdd className="mr-2" />
+          <IoMdLogIn className="mr-2" />
         </motion.div>
-        Register
+        Login
       </motion.button>
     </form>
   );
 };
 
-export default Register;
+export default Login;
