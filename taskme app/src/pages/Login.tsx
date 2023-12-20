@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <form className="notepad" onSubmit={handleSubmit}>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#003a00] to-[#15162c]"> <form className="notepad" onSubmit={handleSubmit}>
       <div className="top">
         <h1 className="text-center text-4xl text-gray-300">Task.Me---Login</h1>
       </div>
@@ -69,7 +69,8 @@ const Login = () => {
         </motion.div>
         Login
       </motion.button>
-    </form>
+    </form></div>
+   
   );
 };
 

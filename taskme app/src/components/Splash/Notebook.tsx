@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Notebook: React.FC = () => {
-  const [Animationcount, setAnimationCount] = useState("");
 
-  const handleClickAnimation = () => {
-      setAnimationCount("play");
-    };
-    
+ 
   return (
     <div className="canvas">
-      <div className="Notebook-loader">
+      <div className="notebook-loader">
         <div className="cover"></div>
         <div className="page one">
           <p>

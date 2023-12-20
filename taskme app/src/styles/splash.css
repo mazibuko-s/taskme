@@ -18,7 +18,7 @@ body {
   margin: auto;
 }
 
-.notepad-loader {
+.notebook-loader {
   position: relative;
   width: 200px;
   height: 250px;
@@ -26,23 +26,23 @@ body {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
 
-.notepad-loader .cover,
-.notepad-loader .page {
+.notebook-loader .cover,
+.notebook-loader .page {
   position: absolute;
   width: 100%;
   height: 100%;
   text-align: center;
 }
 
-.notepad-loader .cover {
+.notebook-loader .cover {
   background: linear-gradient(to right, #24374a 10%, #33495f 10%);
   transform-origin: left center;
   transition: 2s;
   z-index: 20;
-  animation: flip 6s infinite ease-in-out;
+  animation: flip 8s ease-in-out;
 }
 
-.notepad-loader .cover:before {
+.notebook-loader .cover:before {
   content: '';
   position: absolute;
   top: 15%;
@@ -50,10 +50,10 @@ body {
   width: 40%;
   height: 20%;
   background-color: #455d75;
-  animation: title 6s infinite ease-in-out;
+  animation: title 8s ease-in-out;
 }
 
-.notepad-loader .cover:after {
+.notebook-loader .cover:after {
   content: '';
   position: absolute;
   top: 43%;
@@ -61,16 +61,16 @@ body {
   width: 34%;
   height: 5%;
   background-color: #455d75;
-  animation: title 6s infinite ease-in-out;
+  animation: title 8s ease-in-out;
 }
 
-.notepad-loader .page {
+.notebook-loader .page {
   background: #eee;
   border-right: 1px solid #ccc;
   box-sizing: border-box;
 }
 
-.notepad-loader .page:after {
+.notebook-loader .page:after {
   content: '';
   position: absolute;
   top: 0;
@@ -91,12 +91,12 @@ body {
   font-size: 40px;
   text-align: left;
   overflow: hidden;
-  animation: write 6s infinite linear;
+  animation: write 8s linear;
 }
 
 .page.one {
   z-index: 4;
-  animation: one 6s infinite ease-in-out;
+  animation: one 8s ease-in-out;
 }
 
 .page.one:before {
@@ -105,12 +105,12 @@ body {
 
 .page.two {
   z-index: 3;
-  animation: two 6s infinite ease-in-out;
+  animation: two 8s ease-in-out;
 }
 
 .page.three {
   z-index: 2;
-  animation: three 6s infinite ease-in-out;
+  animation: three 8s ease-in-out;
 }
 
 .page.four {
@@ -156,7 +156,7 @@ body {
   border-radius: 10% 10% 0 0;
   background: linear-gradient(#dd574b 20%, #bbb 20%, #bbb 30%, #e67e22 30%, #e67e22 72%, #ffe0a7 72%, #ffe0a7 85%, transparent 85%);
   overflow: hidden;
-  animation: draw 6s infinite ease-out;
+  animation: draw 8s ease-out;
 }
 
 .pencil:before {
