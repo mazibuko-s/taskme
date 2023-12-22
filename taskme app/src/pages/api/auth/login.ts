@@ -5,10 +5,7 @@ import jwt from "jsonwebtoken";
 import { env } from "~/env";
 
 // POST /api/auth/login
-const handleLogin = async (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => {
+const handleLogin = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { username, password } = req.body;
 
@@ -40,11 +37,18 @@ const handleLogin = async (
       expiresIn: "1d", // Set the expiration time as needed
     });
 
+    // Set the token as an HttpOnly cookie
+    res.setHeader(
+      "Set-Cookie",
+      `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+    );
+
     // Send the token and user data back to the client
-    return res.status(200).json({ token, user });
+    return res.status(200).json({ user });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 export default handleLogin;

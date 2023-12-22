@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "~/server/db";
 

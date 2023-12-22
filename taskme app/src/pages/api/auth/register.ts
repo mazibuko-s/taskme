@@ -43,4 +43,5 @@ const handleRegister = async (
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 export default handleRegister;

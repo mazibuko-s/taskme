@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import Task from "~/models/task.model";
 
 const useCreateTask = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const createTask = async (taskData: any) => {
+  const createTask = async (taskData: Task) => {
     setLoading(true);
     try {
       const response = await axios.post("/api/task", taskData);
