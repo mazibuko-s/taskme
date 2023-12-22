@@ -20,7 +20,8 @@ const Login = () => {
       // Redirect if login successful
       if (response.status === 200) {
         console.log("Login successful:", response.data.user);
-
+        localStorage.setItem("userId", response.data.user.id);
+        localStorage.setItem("token", response.data.user.token);
         // Redirect to the tasks page
         router.push("/tasks");
       }
