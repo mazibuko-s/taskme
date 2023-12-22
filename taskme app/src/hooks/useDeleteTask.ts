@@ -8,7 +8,7 @@ const useDeleteTask = () => {
   const deleteTask = async (taskId: string) => {
     setLoading(true);
     try {
-      await axios.delete(`/api/task/${taskId}`);
+      await axios.delete(`/api/task/deletetask/${taskId}`);
     } catch (error: any) {
       setError(error.response.data.error || "An error occurred");
     } finally {

@@ -12,7 +12,7 @@ const useGetTask = () => {
   ) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/task/${taskId}`, {
+      const response = await axios.get(`/api/task/gettask/${taskId}`, {
         params: { ownerId, assigneeId },
       });
       return response.data;

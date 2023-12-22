@@ -14,7 +14,7 @@ const MyTasks: React.FC = () => {
         const token = localStorage.getItem("token");
         const decodedToken: any = jwtDecode(token || "");
 
-        // Fetch tasks assigned to the user (using assigneeId)
+        // Fetch tasks assigned to the user (using ownerId)
         const userTasks = await getTask("", "", decodedToken.userId);
         setTasks(userTasks);
       } catch (error) {

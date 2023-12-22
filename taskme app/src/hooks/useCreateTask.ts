@@ -9,7 +9,7 @@ const useCreateTask = () => {
   const createTask = async (taskData: Task) => {
     setLoading(true);
     try {
-      const response = await axios.post("/api/task", taskData);
+      const response = await axios.post("/api/task/createtask", taskData); 
       return response.data;
     } catch (error: any) {
       setError(error.response.data.error || "An error occurred");

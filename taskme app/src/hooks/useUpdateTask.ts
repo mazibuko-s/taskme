@@ -8,7 +8,7 @@ const useUpdateTask = () => {
   const updateTask = async (taskId: string, taskData: any) => {
     setLoading(true);
     try {
-      const response = await axios.put(`/api/task/${taskId}`, taskData);
+      const response = await axios.put(`/api/task/updatetask/${taskId}`, taskData);
       return response.data;
     } catch (error: any) {
       setError(error.response.data.error || "An error occurred");
