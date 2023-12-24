@@ -22,7 +22,9 @@ const Register = () => {
 
       // Set the token as an HttpOnly cookie
       document.cookie = `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`;
-
+        sessionStorage.setItem("userId", response.data.user.id);
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("username", response.data.user.username);
       console.log("Registration successful:", user);
 
       // redirect

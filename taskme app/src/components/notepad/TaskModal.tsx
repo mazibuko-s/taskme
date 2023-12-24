@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import React, { useState } from "react";
-import useCreateTask from "~/hooks/useCreateTask";
+import useCreateTask from "~/hooks/task/useCreateTask";
 import Task from "~/models/task.model";
 
 interface TaskModalProps {
@@ -16,9 +16,8 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onRequestClose }) => {
 
   const { createTask, loading, error } = useCreateTask();
 
-const ownerId = localStorage.getItem("userId");
-console.log("OwnerId:", ownerId);
-
+  const ownerId = sessionStorage.getItem("userId");
+  console.log("OwnerId:", ownerId);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ console.log("OwnerId:", ownerId);
         ownerId: ownerId || "",
         assigneeId: "65857e398d21712cc0b34ef1",
       };
-console.log(newTask);
+      console.log(newTask);
       await createTask(newTask);
 
       setTitle("");

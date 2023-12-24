@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* For Chrome, Safari, and newer versions of Edge */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Set the background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar handle */
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Set the color of the scrollbar handle on hover */
+}
+
+
+.box
+{
+  border-radius: 19% 81% 26% 74% / 88% 11% 89% 12% ;
+  border: 3px dotted #353535;
+}
+
 input
 {
     background-color: transparent;
@@ -19,7 +44,7 @@ input:focus::placeholder
   width:60px;
   height:16px;
   display: grid;
-  color: #766DF4;
+  color: #353535;
 }
 
 .loader:before,

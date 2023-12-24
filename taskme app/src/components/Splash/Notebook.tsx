@@ -11,7 +11,7 @@ const Notebook: React.FC = () => {
           <p>
             Task.ME
             <br />
-            <span> beta!</span>
+            <span className="text-lg"> alpha!</span>
           </p>
         </div>
         <div className="page two"></div>
