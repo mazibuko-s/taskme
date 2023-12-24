@@ -44,7 +44,7 @@ const handleLogin = async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     // Send the token and user data back to the client
-    return res.status(200).json({ user });
+    return res.status(200).json({ user, token: token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal Server Error" });

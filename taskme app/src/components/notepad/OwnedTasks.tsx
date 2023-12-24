@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import useGetTask from "~/hooks/useGetTask";
+import useGetAllTasks from "~/hooks/useGetAllTasks";
 import Task from "~/models/task.model";
-import { jwtDecode } from "jwt-decode";
 
-const MyTasks: React.FC = () => {
+const OwnedTasks: React.FC = () => {
   const [tasks, setTasks] = useState([]);
-  const { getTask, loading, error } = useGetTask();
+  const { getAllTasks, loading, error } = useGetAllTasks();
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         // Extract userId from the token
-        const token = localStorage.getItem("token");
-        const decodedToken: any = jwtDecode(token || "");
-
+        const userId = localStorage.getItem("userId") || "";
         // Fetch tasks assigned to the user (using ownerId)
-        const userTasks = await getTask("", "", decodedToken.userId);
+        const userTasks = await getAllTasks(userId);
         setTasks(userTasks);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -23,25 +20,28 @@ const MyTasks: React.FC = () => {
     };
 
     fetchTasks();
-  }, [getTask]);
+  }, []);
 
   if (loading) {
     // TODO: Add custom loader {a pen paper animation}
-    return <div>Loading...</div>;
+    return <div className="loader mt-1" />;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-red-700">Error: {error}</div>;
   }
 
   return (
     <div>
-      <h2>Your Tasks</h2>
+      <h2 className="text-center text-4xl">Your Tasks</h2>
       <ul>
         {tasks.map((task: Task) => (
-          <li key={task.id}>
+          <li key={task.id} className="mb-4 flex flex-col rounded border p-4">
             <p>Title: {task.title}</p>
             <p>Status: {task.status}</p>
+            <p>Priority: {task.priority}</p>
+            <p>Due Date: {new Date(task.dueDate).toLocaleDateString()}</p>
+            {/* {task.assigneeId && <p>Assignee ID: {task.assigneeId}</p>} */}
           </li>
         ))}
       </ul>
@@ -49,4 +49,4 @@ const MyTasks: React.FC = () => {
   );
 };
 
-export default MyTasks;
+export default OwnedTasks;

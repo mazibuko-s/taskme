@@ -44,7 +44,7 @@ const Homepage: React.FC = () => {
       <div className="paper">
         <div className="flex justify-evenly">
           <div>
-            <p>Get to tasking</p>
+            <p className="text-lg">Get to tasking</p>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -54,12 +54,11 @@ const Homepage: React.FC = () => {
               Login
             </motion.button>
           </div>
-
           <br />
           <br />
           <br />
           <div>
-            <p>New to Task.Me?</p>
+            <p className="text-lg">New to Task.Me?</p>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
