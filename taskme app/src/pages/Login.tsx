@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#003a00] to-[#15162c]">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <form className="notepad" onSubmit={handleSubmit}>
         <div className="top">
           <h1 className="text-center text-4xl text-gray-300">

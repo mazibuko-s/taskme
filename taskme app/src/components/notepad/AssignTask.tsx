@@ -22,33 +22,45 @@ const AssignTask: React.FC<AssignTaskProps> = ({ task, onClose }) => {
     error: updateTaskError,
   } = useUpdateTask();
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
-  const [initialTaskData, setInitialTaskData] = useState<Task | null>(null);
+  const [localTaskData, setLocalTaskData] = useState<Task | null>(null);
+  const [confirmation, setConfirmation] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch all users when the component mounts
     getAllUsers();
+
     if (task) {
-      setInitialTaskData(task);
+      setLocalTaskData(task);
     }
-  }, [task]); 
+  }, []);
 
   const handleUserSelect = (userId: string) => {
     setSelectedUserId(userId);
   };
 
   const handleAssignTask = async () => {
-    if (task && selectedUserId) {
+    if (localTaskData && selectedUserId) {
       try {
         const updatedTaskData = {
-          ...initialTaskData,
+          ...localTaskData,
           assigneeId: selectedUserId,
         };
 
         // Update task with the new data
-        await updateTask(task.id || "", updatedTaskData);
+        await updateTask(localTaskData.id || "", updatedTaskData);
 
-        // Close the modal
-        onClose();
+setConfirmation(
+  `Task "${localTaskData.title}" assigned to ${
+    (users.find((user: User) => user.id === selectedUserId) as User | undefined)
+      ?.username || "Unknown User"
+  }`,
+);
+
+
+        // Close the modal after a delay
+        setTimeout(() => {
+          onClose();
+        }, 3000);
       } catch (error) {
         console.error("Error assigning task:", error);
       }
@@ -61,8 +73,7 @@ const AssignTask: React.FC<AssignTaskProps> = ({ task, onClose }) => {
         <h2 className="mb-6 text-center text-4xl underline">Assign Task</h2>
         <div>
           <p>
-            Task:{" "}
-            <span className="font-semibold">{initialTaskData?.title}</span>
+            Task: <span className="font-semibold">{localTaskData?.title}</span>
           </p>
           <p className="text-center">Choose Assignee:</p>
           <ul>
@@ -85,7 +96,7 @@ const AssignTask: React.FC<AssignTaskProps> = ({ task, onClose }) => {
             <button
               onClick={handleAssignTask}
               disabled={!selectedUserId}
-              className="mr-2 rounded  px-4 py-2 text-gray-700"
+              className="mr-2 rounded  px-4 py-2 text-gray-700 disabled:text-red-950"
             >
               Assign
             </button>
@@ -96,6 +107,11 @@ const AssignTask: React.FC<AssignTaskProps> = ({ task, onClose }) => {
               Cancel
             </button>
           </div>
+
+          {/* Confirmation message */}
+          {confirmation && (
+            <div className="mt-4 text-green-700">{confirmation}</div>
+          )}
         </div>
         {usersLoading && <div className="loader" />}
         {updateTaskLoading && <div className="loader" />}

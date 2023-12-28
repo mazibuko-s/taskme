@@ -36,7 +36,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#003a00] to-[#15162c]">
+    <div className="flex min-h-screen flex-col items-center justify-center  ">
       <form onSubmit={handleSubmit} className="notepad">
         <div className="top">
           <h1 className="text-center text-4xl text-gray-300">

@@ -22,7 +22,7 @@ export default function Home() {
         <meta name="description" content="Task everybody" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#003a00] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center justify-center">
         {showSplash ? <Notebook /> : <Homepage />}
       </main>
     </>
