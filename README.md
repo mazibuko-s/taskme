@@ -61,4 +61,8 @@ Technologies used in the project:
 
 <h2>🛡️ License:</h2>
 
+<<<<<<< HEAD
 This project is licensed under the MIT LICENSE
+=======
+This project is licensed under the MIT LICENSE
+>>>>>>> 1a878a799c25758a8cdb8b46e0dfbc188e0bac0a
