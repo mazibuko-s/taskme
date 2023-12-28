@@ -26,7 +26,7 @@ Here're some of the project's best features:
 <p>1. clone repo:</p>
 
 ```
-git clone https://github.com/your-username/task-me.git  
+git clone https://github.com/mazibuko-s/taskme.git
 ```
 
 <p>2. Install Dependencies:</p>
